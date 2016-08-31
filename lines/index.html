@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+ <!--- Fabric JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.2/fabric.min.js"></script>
+ <!--- Semantic JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/sidebar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/accordion.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/dropdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/transition.min.js"></script>
+  <!--- Semantic CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/sidebar.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/dropdown.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/icon.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/segment.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/menu.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/container.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/label.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/image.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/message.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/accordion.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/button.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/grid.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/transition.min.css">
+
+<!--Custom Stylesheet-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Lines</title>
+</head>
+<body>
+<!--*************** Header  ******************** -->
+<div id="topmenu" class="ui top attached demo menu">
+        <a class="item"><i class="sidebar tiny icon"></i></a>
+        <div class="ui item right aligned">
+          <i class="dropdown icon"></i>
+          <div id="topdropdown" class="ui selection dropdown">
+            <input type="hidden" name="navigation">
+             <div class="default text black">Line Race</div>
+               <!--**************** Right side drop down menu to change views *************** -->
+              <div class="menu">
+                <a href="../backToTheBoard/index.html"><div class="item" data-value="0">Backs-to-the-board</div></a>
+                <a href="../disappearingFlashcards/index.html"><div class="item" data-value="1">Disappearing Flashcards</div></a>
+                <a href="../fourCorners/index.html"><div class="item" data-value="2">Four Corners</div></a>
+                <a href="../machineGun/index.html"><div class="item" data-value="3">Machine Gun</div></a>
+                <a href="../freeboard/index.html"><div class="item" data-value="4">Free Board</div></a>
+                <a href="../lines/index.html"><div class="item" data-value="5">Line Race</div></a>
+              </div>
+          </div>
+        </div>
+</div>
+    <!--**************** Left side menu set to invisible by default *************** -->
+    <div class="ui bottom attached segment pushable">
+        <div class=
+        "ui inverted labeled icon left inline vertical sidebar menu">
+            <a class="item"><i class="home icon"></i></a> <a class=
+            "item"><i class="block layout icon"></i></a> <a class=
+            "item"><i class="smile icon"></i></a> <a class="item"><i class=
+            "calendar icon"></i></a>
+        </div>
+        <!--**************** Main body  *************** -->
+        <div class="pusher">
+        <!--**************** Warning message if too many cards are selected ************************** -->
+                  <div class="ui hidden red message">
+                        <p>Four Corners only allows 4 flashcards. Doh....!<i class="close icon" id="closeButton"></i></p>
+                </div>
+            <!--**************** Flash card view  ************************** -->
+            <div class="ui grid">
+                <div class="eleven wide column">
+                    <div id="flashCards">
+                        <div class="ui accordion">
+                            <div class="title">
+                                <i class="dropdown icon"></i>Flashcards
+                            </div>
+                            <div class="content" id="imagesDiv"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--**************** Option button above canvas the contents comes from the CSS file ************************** -->
+                <div class="four wide column">
+                    <div id="buttonPull">
+                        <div class="ui basic icon compact mini buttons">
+                          <button class="ui button format" id="hbuttonClick" ><i id="hbutton" class="resize horizontal icon"></i></button>
+                          </div>
+                       <div class="ui basic icon compact mini buttons">
+                          <button class="ui button format active apperance" id="imageToggle"><i class="image icon"></i></button>
+                          <button class="ui button format apperance" id="textToggle">T</button>
+                          <button class="ui button format apperance" id="textndImageToggle">T + <i class="image icon"></i></button>
+                          <button class="ui button" id="refreshButton"><i class="trash icon"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--**************** Canvas ************************** -->
+            <div class="ui basic segment" id="canvasDiv">
+                <canvas id="c"></canvas>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="flashcard.js"></script>
+</body>
+</html>

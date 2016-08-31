@@ -1,0 +1,111 @@
+#c{
+
+   min-width: 100%;
+
+}
+
+#canvasDiv{
+  margin-top: 10px;
+  width:100%;
+  height:100%;
+}
+
+#titleDiv{
+  margin-top: 10px;
+}
+
+body {
+    font-family: 'Roboto',sans-serif;
+    color: gray;
+}
+
+
+
+#topmenu {
+  height: 1.8em !important;
+  min-height: 1.8em !important;
+}
+
+#viewName {
+    float:left;
+}
+
+.title {
+    margin-top: 2px;
+}
+
+.ui.grid>.column:not(.row) {
+    padding-top: 1rem;
+    padding-bottom: 0.1rem;
+}
+
+.ui.basic.segment{
+  margin-top: 0.4rem;
+}
+
+.ui.accordian.title {
+    text-align: left !important;
+}
+
+.ui.basic.buttons .button.selected {
+    background-color: #1678c2 !important;
+    color: #fff !important;
+}
+#closeButton {
+    float: right;
+}
+
+#buttonPull {
+    text-align: right;
+    margin-top:10px;
+
+}
+
+#refreshGroup {
+    margin-left: 10px;
+    width: 48px;
+}
+
+#toogleApperance{
+  width:90px;
+}
+
+.textToggle:before {
+  content:"Text";
+  }
+.imageToggle:before {
+  content:"Image";
+  }
+.textndImageToggle:before {
+  content:"Text & Image";
+  }
+
+#topdropdown{
+    padding:2px !important;
+    border-width: 0px;
+}
+.ui.selection.dropdown{
+      min-height: 2px !important; 
+}
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.ui.segment{
+  padding-top: 4px !important; 
+ 
+}
+.photoText, .photo{
+  font-size: 1.1em;
+  color:black;
+
+}
+
+#themeChooser{
+  margin-bottom: 10px;
+}
+
+
+
+

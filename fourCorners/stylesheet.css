@@ -1,0 +1,78 @@
+#c {
+    height: 100%;
+    width:100%;
+}
+
+body {
+    font-family: 'Roboto',sans-serif;
+    color: gray;
+}
+
+#topmenu {
+  height: 1.8em !important;
+  min-height: 1.8em !important;
+}
+
+.title {
+    margin-top: 7px;
+}
+
+#canvasDiv {
+	margin-top: -10px;
+}
+
+.ui.image.label {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    height: 17.5px;
+}
+
+.ui.accordian.title {
+    text-align: left !important;
+}
+
+.ui.basic.buttons .button.selected {
+    background-color: #1678c2 !important;
+    color: #fff !important;
+}
+
+#closeButton {
+    float: right;
+}
+
+#buttonPull {
+    text-align: right;
+    margin-top:10px;
+
+}
+
+#refreshGroup {
+    margin-left: 10px;
+    width: 48px;
+}
+
+#toogleApperance{
+  width:90px;
+}
+
+.textToggle:before {
+  content:"Text";
+  }
+.imageToggle:before {
+  content:"Image";
+  }
+.textndImageToggle:before {
+  content:"Text & Image";
+  }
+
+#topdropdown{
+    padding:2px !important;
+    border-width: 0px;
+}
+.ui.selection.dropdown{
+      min-height: 2px !important; 
+}
+a{
+    text-decoration: none;
+    color:black;
+}

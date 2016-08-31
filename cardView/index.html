@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <!--- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script   src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js"   integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo="   crossorigin="anonymous"></script>
+  
+  <!--- Semantic JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/sidebar.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/dropdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/transition.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/dimmer.min.js"></script>
+  
+  <!--- Semantic CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/sidebar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/dropdown.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/icon.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/segment.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.1/components/menu.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/container.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/segment.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/label.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/image.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/message.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/accordion.min.css" >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/button.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/grid.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/card.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/input.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/transition.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/dimmer.min.css">
+  <!--- local styling -->
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+
+
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>  
+<body>
+  <div id="dark"></div>
+<!--*************** Header material in Node.js ******************** -->
+
+  
+  
+  
+  
+  
+<div class="ui top attached demo menu">
+    <a class="item"><i class="sidebar tiny icon"></i></a>
+</div>
+<div class="ui bottom attached segment pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <a class="item">
+      <i class="home icon"></i>
+    </a>
+    <a class="item">
+      <i class="block layout icon"></i>
+    </a>
+    <a class="item">
+      <i class="smile icon"></i>
+    </a>
+    <a class="item">
+      <i class="calendar icon"></i>
+    </a>
+  </div>
+
+<!--**************** Required body part in Node.js start *************** -->
+    <div class="pusher">
+   <div id="cardViewer" class="ui basic segment ">
+        <div class="ui three stackable cards topout">
+            <!--**************** Cards begin  *************** -->
+            
+            <div class="ui raised card">
+
+                <div class="extra content">
+            <div class="ui input transparent">            
+            <input id="titleText" type="text" placeholder="Name...">
+            </div>
+            </div>
+
+                <div class="content">
+                    <div class="ui small feed">
+              <!-- First Drop Down menu -->        
+                    <div class="ui mini fluid selection dropdown transparent">
+                      <!-- Holder of values -->
+                        <input id="classification" type="hidden"> <i class="dropdown icon"></i>
+                      <!-- List of items based on tags -->
+                        <div id="classList" class="default text">Classification</div>
+                      <!-- Actual menu of items populated from JS. -->
+                        <div class="menu classmenu"></div>
+                    </div>
+                      <!-- Second dropdown multi select filtered by first dropdown --> 
+                            <div id="words" class="ui mini fluid multiple search selection dropdown">
+                            <input id="flashCardList" type="hidden"> <i class=
+                            "dropdown icon"></i>
+                                <div class="default text">
+                                    Start typing...
+                                </div>
+                                <div  class="menu listMenu">
+                                </div>
+                          </div>
+                    </div>
+                        </div>
+                     <div class="content  center aligned">
+          
+                    <div class="ui small feed">
+                 
+                </div>
+                 <div id="saveCollection" class="ui mini bottom button green ">Save as new collection</div>
+              </div>
+            
+               
+                 </div>
+
+                           
+                 <span id="newCards"></span>
+            <div class="ui raised card">
+
+                <div class="content">
+                    <div class="main header">
+                        English World 1 Unit 1
+                    </div>
+                </div>
+                <div class="content">
+                    <h4 class="ui sub header">Contents</h4>
+                    <div class="ui small feed">
+                        DNA, ability, boat, fish, cany, clown
+                    </div>
+                </div>
+                <div class="extra content">
+                    <button class="ui mini button open">open</button>
+                    <div class="ui mini icon buttons">
+                        <button class="ui button edit"><i class=
+                        "edit icon"></i></button> <button class=
+                        "ui red button"><i class="trash icon"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui raised card">
+                <div class="content">
+                    <div class="main header">
+                        English World 2 unit 1
+                    </div>
+                </div>
+                <div class="content">
+                    <h4 class="ui sub header">Contents</h4>
+                    <div class="ui small feed">
+                        Homer, DNA, man, lion dog, flowers, spanner, woman,
+                        boat, chair, fire, cat, cat
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a href="../backToTheBoard/index.html"><button class="ui mini button open">open</button></a>
+                    <div class="ui mini icon buttons">
+                        <button class="ui button edit"><i class="edit icon"></i></button>
+                        <button class="ui red button"><i class="trash icon"></i></button>
+                    </div>
+                </div>
+
+            </div>
+                        <div class="ui raised card">
+                <div class="content">
+                    <div class="main header">
+                        English World 2 unit 1
+                    </div>
+                </div>
+                <div class="content">
+                    <h4 class="ui sub header">Contents</h4>
+                    <div class="ui small feed">
+                        Homer, DNA, man, lion dog, flowers, spanner, woman,
+                        boat, chair, fire, cat, cat
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a href="../backToTheBoard/index.html"><button class="ui mini button open">open</button></a>
+                    <div class="ui mini icon buttons">
+                        <button class="ui button edit"><i class="edit icon"></i></button>
+                        <button class="ui red button"><i class="trash icon"></i></button>
+                    </div>
+                </div>
+
+            </div>
+                <div class="ui raised card">
+                <div class="content">
+                    <div class="main header">
+                        English World 2 unit 1
+                    </div>
+                </div>
+                <div class="content">
+                    <h4 class="ui sub header">Contents</h4>
+                    <div class="ui small feed">
+                        Homer, DNA, man, lion dog, flowers, spanner, woman,
+                        boat, chair, fire, cat, cat
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a href="../backToTheBoard/index.html"><button class="ui mini button open">open</button></a>
+                    <div class="ui mini icon buttons">
+                        <button class="ui button edit"><i class="edit icon"></i></button>
+                        <button class="ui red button"><i class="trash icon"></i></button>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+    </div>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

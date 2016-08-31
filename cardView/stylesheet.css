@@ -1,0 +1,73 @@
+body {
+    font-family: 'Roboto',sans-serif;
+    color: gray;
+}
+
+#cardViewer{
+  min-height: 700px;
+}
+
+.mini.icon.buttons{
+  float:right;
+}
+
+.ui.mini.button.open{
+  background-color:#1678c2;
+  color: white;
+}
+
+#plusButton{
+  padding-left:40px;
+  padding-right:50px;
+}
+
+.dropdown {
+  max-width:90%;
+ /* min-height: 1rem !important;*/
+   font-size: 12px !important;
+     font-family: 'Roboto',sans-serif;
+
+}
+
+.ui.label{
+ /*   color: green;*/
+    /*font-style: normal !important;*/
+  /*  font-size: 0.7rem !important;*/
+    background-color: white !important;
+    font-family: 'Roboto',sans-serif;
+
+
+} 
+
+
+.listed{
+   font-size: 12px !important;
+   font-family: 'Roboto',sans-serif;
+
+
+}
+
+#titleText{
+    font-weight: 700;
+    font-size: 1.28571429em;
+    margin-top: -.21425em;
+    line-height: 1.2857em;
+}
+
+
+
+}
+
+
+.ui.card>.button {
+    width: calc(90% -2px) !important;
+
+}
+.ui.mini.fluid.multiple.search.selection.dropdown {
+    /*padding: 0.3em;*/
+      max-width:92%;
+}
+
+
+
+
