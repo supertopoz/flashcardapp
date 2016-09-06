@@ -2,12 +2,20 @@ $('.add .dimmer').dimmer({on: 'click'});
 
 $('.ui.sidebar').sidebar(
 {
-    context: $('.bottom.segment')
+context: $('.bottom.segment')
 }).sidebar('attach events', '.sidebar.tiny.icon');
 $('.ui.dropdown').dropdown(
 {
     allowAdditions: true
 });
+
+function activateSemantics(){
+     $('.ui.dropdown')
+  .dropdown({
+      on: 'click'});
+}
+
+
 // ***************************Seed data for development ****************************************
 var categories = [];
 var catlist = [];
@@ -80,7 +88,9 @@ setTimeout(function(){
 $(document).on('change', '.ui.mini.fluid.selection.dropdown.transparent',
     function()
     {
+        
         var classification = $(this).closest(".ui.small.feed").find('input').val();
+        alert(classification);
         if (classification !== '')
         {
            $(".listMenu").empty();  
@@ -198,12 +208,12 @@ $(document).on("click", ".ui.button.edit", function()
         "<div></div>");
     // Get the flash cards and add them into dropdown menus.  
     $(this).closest('.ui.raised.card').find('.ui.small.feed').replaceWith(
-        "<div class='ui.small.feed'>" +
-        "<div class='ui mini fluid selection dropdown transparent'>" +
-        "<input id='classification' type='hidden'> <i class='dropdown icon'></i>" +
-        "<div id='classList' class='default text'>Classification</div>" +
-        "<div class='menu classmenu'></div>" + "</div>" + "</div>" +
-        "<div id='thisone' class='ui mini fluid multiple search selection dropdown wordsDropdown'>" +
+        "<div class='ui small feed'>" +
+        "<div class='ui mini fluid selection dropdown transparent' tabindex='0'>" +
+        "<input class='classification' type='hidden'> <i class='dropdown icon'></i>" +
+        "<div class='default text'>Classification</div>" +
+        "<div class='menu classmenu' tabindex='-1'></div>" + "</div>" + "</div>" +
+        "<div class='ui mini fluid multiple search selection dropdown wordsDropdown'>" +
         "<input type='hidden'> <i class='dropdown icon'></i>" +
         "<input class='search' autocomplete='off' tabindex='0'>" +
         "<div class='default text'>Start typing...</div>" +
@@ -211,14 +221,18 @@ $(document).on("click", ".ui.button.edit", function()
         "</div></div>"
     );
    $(this).closest('.ui.raised.card').find('.ui.mini.button.open').replaceWith("<button class='ui mini button green save'>Save</button>");
+  
     applyCatergories();
-
+  
     //   $('.ui.dropdown').dropdown('refresh');
     runWords(words);
     var wordsDropdown = $(this).closest(".ui.raised.card").find(
         ".wordsDropdown");
     $(wordsDropdown).dropdown('set selected', content);
+    activateSemantics();
 });
+
+
 //  runCatergories();
 // Get the words in the card. 
 // Add the words to the second list. 
