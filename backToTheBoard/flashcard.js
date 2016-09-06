@@ -187,6 +187,8 @@ $('#closeButton').on('click', function()
 //***************** Render each image on to the canvas with settings needed****
 //***************** Used to push flashcards into the canvas. *****************
 function cardPositioner(theCards, format) {
+
+
         $('#refreshButton').removeClass('active');
         if (format === undefined) {
             format = $(".apperance.active").attr('id');
@@ -249,7 +251,14 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
             textVisible = 0;
         }
         var flashCards = theCard;
-        var imageUrl = images[flashCards].url;
+
+
+    //    var imageUrl = images[flashCards].url;
+
+        if ( images[flashCards] !== undefined){
+         
+         var imageUrl = images[flashCards].url
+ 
         var imageName = images[flashCards].name;
         // Add Render the images.
         fabric.Image.fromURL(imageUrl, function(img)
@@ -314,6 +323,8 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
                 mtr: false,
             });
         });
+               } 
+
     }
 
 //********************* Track state of objects and their location **********************
