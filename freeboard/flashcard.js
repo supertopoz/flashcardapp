@@ -41,8 +41,23 @@ $(document).ready(function(){
     });
 });
 
+   //09/11/2016 Added by Jason 
+$(document).ready(function(){
+    $('#imageToggle').attr('disabled',true); 
+});
+ // End update
+
+
+
+
+
+
 $(document).ready(function(){
     $('#textToggle').click(function(){
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true);
+    $('.apperance').not(this).attr('disabled',false);
+    // End update
 
 cardPositioner(theCards)
     });
@@ -50,12 +65,20 @@ cardPositioner(theCards)
 
 $(document).ready(function(){
     $('#imageToggle').click(function() {
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true);
+    $('.apperance').not(this).attr('disabled',false);
+    // End update
 cardPositioner(theCards)
 });
 });
 
 $(document).ready(function(){
     $('#textndImageToggle').click(function() {
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true);
+    $('.apperance').not(this).attr('disabled',false);
+    // End update
 cardPositioner(theCards)
 });
 });
@@ -85,6 +108,10 @@ var theCards = [];
 $('#refreshButton').on('click', function(e)
 
 {
+    //09/11/2016 Added by Jason 
+    $('#imageToggle').attr('disabled',true);
+    $('.apperance').not('#imageToggle').attr('disabled',false);
+    // End update
     $('a.image').removeClass('blue');
     $('.apperance').not(this).removeClass('active');
     $('#imageToggle').addClass('active');
