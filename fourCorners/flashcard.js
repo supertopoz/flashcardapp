@@ -34,21 +34,41 @@ $('.ui.accordion').accordion({exclusive: false});
 // ************************** Format Buttons ************************************************
 $(document).ready(function(){
     $('#textToggle').click(function(){
-        var format = "textToggle"
+        var format = "textToggle";
+        //09/11/2016 Added by Jason 
+         $(this).attr('disabled',true);
+         $('.apperance').not(this).attr('disabled',false);
+         // End update
  imagePositioner(format);
     });
 });
 
+
+   //09/11/2016 Added by Jason 
+$(document).ready(function(){
+    $('#imageToggle').attr('disabled',true); 
+});
+ // End update
+
+
 $(document).ready(function(){
     $('#imageToggle').click(function() {
-        var format = "imageToggle"
+        var format = "imageToggle";
+        //09/11/2016 Added by Jason 
+         $(this).attr('disabled',true);
+         $('.apperance').not(this).attr('disabled',false);
+         // End update
  imagePositioner(format);
 });
 });
 
 $(document).ready(function(){
     $('#textndImageToggle').click(function() {
-        var format = "textndImageToggle"
+        var format = "textndImageToggle";
+        //09/11/2016 Added by Jason 
+         $(this).attr('disabled',true);
+         $('.apperance').not(this).attr('disabled',false);
+         // End update
  imagePositioner(format);
 });
 });
@@ -81,7 +101,11 @@ var theCards = [];
 //****************** Refesh button to remove all selected flash cards**********
 $('#refreshButton').on('click', function(e)
 
-{
+{   
+    //09/11/2016 Added by Jason 
+    $('#imageToggle').attr('disabled',true);
+    $('.apperance').not('#imageToggle').attr('disabled',false);
+    // End update
     $('a.image').removeClass('blue');
     $('.apperance').not(this).removeClass('active');
     $('#imageToggle').addClass('active');
