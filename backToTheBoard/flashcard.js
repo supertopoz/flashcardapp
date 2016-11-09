@@ -40,9 +40,23 @@ $('.ui.accordion').accordion({exclusive: false});
         $(this).toggleClass('active');
     });
 });*/
+    //09/11/2016 Added by Jason 
+$(document).ready(function() {
+    $('#imageToggle').attr('disabled',true);
+});
+    // End update    
+
+
+
+
 
 $(document).ready(function() {
     $('#textToggle').click(function() {
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true);
+    $('.apperance').not('#textToggle').attr('disabled',false);
+    // End update    
+
         if ($(this).attr('class') ===
             'ui button format apperance') {
             $(this).toggleClass('active');
@@ -55,6 +69,10 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('#imageToggle').click(function() {
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true);
+    $('.apperance').not('#imageToggle').attr('disabled',false);
+    // End update  
         if ($(this).attr('class') ===
             'ui button format apperance') {
             $('.apperance').not(this).removeClass('active');
@@ -84,6 +102,10 @@ loadImages();
 $('#refreshButton').on('click', function(e)
 
 {
+    //09/11/2016 Added by Jason 
+    $('#imageToggle').attr('disabled',true);
+    $('.apperance').not('#imageToggle').attr('disabled',false);
+    // End update  
     $('a.image').removeClass('blue');
     $('.random').removeClass('active');
     $('.apperance').not(this).removeClass('active');
