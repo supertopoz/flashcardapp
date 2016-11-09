@@ -36,6 +36,7 @@ $('.ui.accordion').accordion({exclusive: false});
 $(document).ready(function(){
     $('.apperance').click(function() {
         $('.apperance').not(this).removeClass('active');
+         
         $(this).toggleClass('active');
     });
 });
@@ -43,13 +44,28 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('#textToggle').click(function(){
         var format = "textToggle"
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true)
+    $('.apperance').not(this).attr('disabled',false)
+    // End update
  flashCardRunner(theCards, format);
     });
 });
 
+ //09/11/2016 Added by Jason 
+$(document).ready(function(){
+    $('#imageToggle').attr('disabled',true); 
+});
+ // End update
+
+
 $(document).ready(function(){
     $('#imageToggle').click(function() {
-        var format = "imageToggle"
+    var format = "imageToggle"
+    //09/11/2016 Added by Jason 
+    $(this).attr('disabled',true)
+    $('.apperance').not(this).attr('disabled',false)
+    // End update
  flashCardRunner(theCards, format);
 });
 });
@@ -57,6 +73,10 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('#textndImageToggle').click(function() {
         var format = "textndImageToggle"
+        //09/11/2016 Added by Jason 
+        $(this).attr('disabled',true)
+        $('.apperance').not(this).attr('disabled',false)
+        // End update
  flashCardRunner(theCards, format);
 });
 });
@@ -83,6 +103,10 @@ var theCards = [];
 $('#refreshButton').on('click', function(e)
 
 {
+    //09/11/2016 Added by Jason 
+    $('.apperance').not(this).attr('disabled',false)
+    $('#imageToggle').attr('disabled',true)  
+    // End update 
     $('a.image').removeClass('blue');
     $('.apperance').not(this).removeClass('active');
     $('#imageToggle').addClass('active');
@@ -123,7 +147,7 @@ function flashCardRunner(flashCards)
         canvas.clear()
           var flashCards = $(".blue").map(function()
         {
-            return $(this).attr('id');
+        return $(this).attr('id');
         }).get();
         var totalFlashCards = flashCards.length;
         var thisCardNumber = 0;
@@ -155,6 +179,7 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
 
         if($('.ui.button.format.active.apperance').attr('id') === 'textToggle'){
             imageOpacity = 0;
+
         } else {
             imageOpacity = 1; 
         }
