@@ -1,3 +1,5 @@
+// Four Corners
+
 //****** init canvas *********************8
 var canvas = new fabric.Canvas('c', { selection: false });
 var grid = 30;
@@ -20,7 +22,7 @@ var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_
 {url: "http://sciencewiz.com/Portal_Images/DNA_Default.png", name: "DNA"},
 {url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
 {url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
-{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "Dog"},
+{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "PenPinepplePen"},
 {url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
 {url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
 {url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Woman"},
@@ -157,6 +159,82 @@ $(".label").on('click', function()
 });
 
 
+//**************** Text Wrapper ************************************************
+function wrapCanvasText(t, canvas, maxW, maxH) {
+    if (typeof maxH === "undefined") {
+        maxH = 0;
+    }
+
+    // var words = t.text.split(" ");
+    var words = t.split(" ");
+    var formatted = '';
+
+    // clear newlines
+    // var sansBreaks = t.text.replace(/(\r\n|\n|\r)/gm, "");  
+    var sansBreaks = t.replace(/(\r\n|\n|\r)/gm, "");
+    // calc line height
+    var lineHeight = new fabric.Text(sansBreaks, {
+        fontFamily: t.fontFamily,
+        fontSize: 20// t.fontSize
+    }).height;
+
+    // adjust for vertical offset
+    var maxHAdjusted = maxH > 0 ? maxH - lineHeight : 0;
+    var context = canvas.getContext("2d");
+
+
+    context.font = t.fontSize + "px " + t.fontFamily;
+    var currentLine = "";
+    var breakLineCount = 0;
+
+    for (var n = 0; n < words.length; n++) {
+
+        var isNewLine = currentLine == "";
+        var testOverlap = currentLine + ' ' + words[n];
+
+        // are we over width?
+        var w = context.measureText(testOverlap).width;
+
+        if (w < maxW) { // if not, keep adding words
+            currentLine += words[n] + ' ';
+            formatted += words[n] += ' ';
+        } else {
+
+            // if this hits, we got a word that need to be hypenated
+            if (isNewLine) {
+                var wordOverlap = "";
+
+                // test word length until its over maxW
+                for (var i = 0; i < words[n].length; ++i) {
+
+                    wordOverlap += words[n].charAt(i);
+                    var withHypeh = wordOverlap + "-";
+
+                    if (context.measureText(withHypeh).width >= maxW) {
+                        // add hyphen when splitting a word
+                        withHypeh = wordOverlap.substr(0, wordOverlap.length - 2) + "-";
+                        // update current word with remainder
+                        words[n] = words[n].substr(wordOverlap.length - 1, words[n].length);
+                        formatted += withHypeh; // add hypenated word
+                        break;
+                    }
+                }
+            }
+            n--; // restart cycle
+            formatted += '\n';
+            breakLineCount++;
+            currentLine = "";
+        }
+        if (maxHAdjusted > 0 && (breakLineCount * lineHeight) > maxHAdjusted) {
+            // add ... at the end indicating text was cutoff
+            formatted = formatted.substr(0, formatted.length - 3) + "...\n";
+            break;
+        }
+    }
+    // get rid of empy newline at the end
+    formatted = formatted.substr(0, formatted.length - 1);
+    return formatted;
+}
 
 
 
@@ -205,10 +283,11 @@ function imagePositioner(format)
     imageCoordinates[3].top = canVasHeight - 200;
     imageCoordinates[4].top = canVasHeight/2 - 100;
     imageCoordinates[4].left = canVasWidth/2 - 100;
+  
+  
     for (var i = 0; i < incomingImages.length; i++)
     {
-        var location = imageCoordinates[i];
-        
+        var location = imageCoordinates[i];        
         var image = images[incomingImages[i]];
         renderImage(location, image, format);
     }
@@ -281,14 +360,14 @@ function renderImage(location, image, format)
         var left = location.left;
         var top = location.top;
         var imageUrl = image.url;
-        var imageName = image.name;
+        var imageName =  wrapCanvasText(image.name, canvas, 48, 100);
         // Add Text at the bottom of the images.
         fabric.Image.fromURL(imageUrl , function(img) {  
   
 
          var scaleFactor=1.5;
          var fontSize = scaleFactor * 30;
-
+         
             
         var img1 = img.scale(scaleFactor).set({ 
         opacity:imageVisible,  
@@ -298,6 +377,8 @@ function renderImage(location, image, format)
         name:'1',
 
         });
+          
+          
   			var text = new fabric.Text(imageName,
   			{
                 opacity: textVisible,
@@ -321,6 +402,9 @@ function renderImage(location, image, format)
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /
                     2));
             }
+          
+          
+          
            	var rect = new fabric.Rect(
            	{
                 opacity: 0,
@@ -328,6 +412,7 @@ function renderImage(location, image, format)
                 height:100 * scaleFactor,
                 width:100 * scaleFactor,
             });
+          
     var group = new fabric.Group([img1,text, rect], { left: left, top: top});
     canvas.add(group);
       group.lockUniScaling=true    ;
