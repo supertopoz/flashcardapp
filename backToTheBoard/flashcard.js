@@ -17,15 +17,15 @@ $('.ui.sidebar').sidebar({
   .sidebar('attach events', '.sidebar.tiny.icon');
 
 // ***************************Seed data for development ****************************************
-var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_clown_avatar_picture_41741.png", name: "Homer"},
+var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_clown_avatar_picture_41741.png", name: "PenPineapplePen"},
 {url: "http://sciencewiz.com/Portal_Images/DNA_Default.png", name: "DNA"},
-{url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
-{url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
-{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "Dog"},
+{url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "This one is too long"},
+{url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "This one is too long"},
+{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "PenPineapplePen"},
 {url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
-{url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
+{url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Umbrella Flower"},
 {url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Woman"},
-{url: "https://www.croatia-tourist-agency.com/images/upload/vechile/small_boat-rent-speedboat-punat-59.jpg", name: "Boat"},
+{url: "https://www.croatia-tourist-agency.com/images/upload/vechile/small_boat-rent-speedboat-punat-59.jpg", name: "PenPineapplePen"},
 {url: "http://store.thecoop.com/coopstore/images/t_9010.jpg", name: "Chair"},
 {url: "http://restorationmasterfinder.com/restoration/wp-content/uploads/2013/04/fire-100x100.jpg", name: "Fire"},
 {url: "https://yt3.ggpht.com/-Uqwr0hWfOic/AAAAAAAAAAI/AAAAAAAAAAA/Rip1vis4UrM/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "Cat"}];
@@ -249,10 +249,94 @@ function cardPositioner(theCards, format) {
         }
     }
 
+//**************** Text Wrapper ************************************************
+function wrapCanvasText(t, canvas, maxW, maxH) {
+    if (typeof maxH === "undefined") {
+        maxH = 0;
+    }
+
+    // var words = t.text.split(" ");
+    var words = t.split(" ");
+    var formatted = '';
+
+    // clear newlines
+    // var sansBreaks = t.text.replace(/(\r\n|\n|\r)/gm, "");  
+    var sansBreaks = t.replace(/(\r\n|\n|\r)/gm, "");
+    // calc line height
+    var lineHeight = new fabric.Text(sansBreaks, {
+        fontFamily: t.fontFamily,
+        fontSize: 20// t.fontSize
+    }).height;
+
+    // adjust for vertical offset
+    var maxHAdjusted = maxH > 0 ? maxH - lineHeight : 0;
+    var context = canvas.getContext("2d");
+
+
+    context.font = t.fontSize + "px " + t.fontFamily;
+    var currentLine = "";
+    var breakLineCount = 0;
+
+    for (var n = 0; n < words.length; n++) {
+
+        var isNewLine = currentLine == "";
+        var testOverlap = currentLine + ' ' + words[n];
+
+        // are we over width?
+        var w = context.measureText(testOverlap).width;
+
+        if (w < maxW) { // if not, keep adding words
+            currentLine += words[n] + ' ';
+            formatted += words[n] += ' ';
+        } else {
+
+            // if this hits, we got a word that need to be hypenated
+            if (isNewLine) {
+                var wordOverlap = "";
+
+                // test word length until its over maxW
+                for (var i = 0; i < words[n].length; ++i) {
+
+                    wordOverlap += words[n].charAt(i);
+                    var withHypeh = wordOverlap + "-";
+
+                    if (context.measureText(withHypeh).width >= maxW) {
+                        // add hyphen when splitting a word
+                        withHypeh = wordOverlap.substr(0, wordOverlap.length - 2) + "-";
+                        // update current word with remainder
+                        words[n] = words[n].substr(wordOverlap.length - 1, words[n].length);
+                        formatted += withHypeh; // add hypenated word
+                        break;
+                    }
+                }
+            }
+            n--; // restart cycle
+            formatted += '\n';
+            breakLineCount++;
+            currentLine = "";
+        }
+        if (maxHAdjusted > 0 && (breakLineCount * lineHeight) > maxHAdjusted) {
+            // add ... at the end indicating text was cutoff
+            formatted = formatted.substr(0, formatted.length - 3) + "...\n";
+            break;
+        }
+    }
+    // get rid of empy newline at the end
+    formatted = formatted.substr(0, formatted.length - 1);
+    return formatted;
+}
+
+
+
+
+
+
+
 //***************** Render each image on to the canvas with settings needed****
 
 function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
 {
+  
     var textVisible;
     var imageVisible;
     canvas.clear();
@@ -279,13 +363,13 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
 
         if ( images[flashCards] !== undefined){
          
-         var imageUrl = images[flashCards].url
- 
-        var imageName = images[flashCards].name;
+        var imageUrl = images[flashCards].url
+        var imageName = wrapCanvasText(images[flashCards].name, canvas, 48 * (scaleFactor), 100*scaleFactor);
+        //var imageName =           
         // Add Render the images.
         fabric.Image.fromURL(imageUrl, function(img)
         {
-            var fontSize = scaleFactor * 28;
+            var fontSize = scaleFactor * 15;
             var img1 = img.scale(scaleFactor).set(
             {
                 opacity: imageVisible,
