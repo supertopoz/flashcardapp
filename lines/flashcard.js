@@ -141,85 +141,6 @@ $(".label").on('click', function()
         flashCardRunner()
 });
 
-//**************** Text Wrapper ************************************************
-function wrapCanvasText(t, canvas, maxW, maxH) {
-    if (typeof maxH === "undefined") {
-        maxH = 0;
-    }
-
-    // var words = t.text.split(" ");
-    var words = t.split(" ");
-    var formatted = '';
-
-    // clear newlines
-    // var sansBreaks = t.text.replace(/(\r\n|\n|\r)/gm, "");  
-    var sansBreaks = t.replace(/(\r\n|\n|\r)/gm, "");
-    // calc line height
-    var lineHeight = new fabric.Text(sansBreaks, {
-        fontFamily: t.fontFamily,
-        fontSize: 20// t.fontSize
-    }).height;
-
-    // adjust for vertical offset
-    var maxHAdjusted = maxH > 0 ? maxH - lineHeight : 0;
-    var context = canvas.getContext("2d");
-
-
-    context.font = t.fontSize + "px " + t.fontFamily;
-    var currentLine = "";
-    var breakLineCount = 0;
-
-    for (var n = 0; n < words.length; n++) {
-
-        var isNewLine = currentLine == "";
-        var testOverlap = currentLine + ' ' + words[n];
-
-        // are we over width?
-        var w = context.measureText(testOverlap).width;
-
-        if (w < maxW) { // if not, keep adding words
-            currentLine += words[n] + ' ';
-            formatted += words[n] += ' ';
-        } else {
-
-            // if this hits, we got a word that need to be hypenated
-            if (isNewLine) {
-                var wordOverlap = "";
-
-                // test word length until its over maxW
-                for (var i = 0; i < words[n].length; ++i) {
-
-                    wordOverlap += words[n].charAt(i);
-                    var withHypeh = wordOverlap + "-";
-
-                    if (context.measureText(withHypeh).width >= maxW) {
-                        // add hyphen when splitting a word
-                        withHypeh = wordOverlap.substr(0, wordOverlap.length - 2) + "-";
-                        // update current word with remainder
-                        words[n] = words[n].substr(wordOverlap.length - 1, words[n].length);
-                        formatted += withHypeh; // add hypenated word
-                        break;
-                    }
-                }
-            }
-            n--; // restart cycle
-            formatted += '\n';
-            breakLineCount++;
-            currentLine = "";
-        }
-        if (maxHAdjusted > 0 && (breakLineCount * lineHeight) > maxHAdjusted) {
-            // add ... at the end indicating text was cutoff
-            formatted = formatted.substr(0, formatted.length - 3) + "...\n";
-            break;
-        }
-    }
-    // get rid of empy newline at the end
-    formatted = formatted.substr(0, formatted.length - 1);
-    return formatted;
-}
-
-
-
 //***************** Used to push flashcards into the canvas. *****************
 function flashCardRunner(flashCards)
     {
@@ -249,7 +170,7 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
         var imageName;
       //   alert($('#hbutton').attr('class'))
         if ($('#hbutton').attr('class') === "resize horizontal icon") {
-          imageName = wrapCanvasText( images[flashCards].name, canvas, 40, 100);
+          imageName = images[flashCards].name// wrapCanvasText( images[flashCards].name, canvas, 40, 100);
                     
         } else { 
           imageName = images[flashCards].name;    
@@ -336,10 +257,16 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
             });
             var text = new fabric.Text(imageName,
             {
+            //    width:43,
+            //    height:43,
                 opacity: textOpacity,
                 fill: 'black',
                 fontFamily: 'Roboto',
-                fontSize: scaleFactor * 30,
+                ///
+                /// Change here 30th Jan 2017 Jason
+                ///
+                fontSize: scaleFactor * 12,
+                ///
             });
             //Where the text will appear on the screen
             //visible this
@@ -354,20 +281,21 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
                 text.set("top", img1.height/2 * scaleFactor - text.height/2);
                 text.set("opacity", 1);
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /2));
+                text.set("fontSize", scaleFactor * 12); // Row added 30th Jan 2016
 
 
              }
              if( $('#hbutton').attr('class')=== 'resize vertical icon' && $('.ui.button.format.active.apperance').attr('id') === 'textToggle' ){
              //   alert("working");
-                text.set("top", img1.height * scaleFactor/ 2  - text.height/2);
+                text.set("top", img1.height * scaleFactor/ 4  - text.height/2); // changed 2 to 4 30th Jan 2016 Jason
                 text.set("opacity", 1);
-                text.set("left", img1.width * scaleFactor / 2 - (text.width / 2));
+                text.set("left", img1.width * scaleFactor / 2 - (text.width / 2)); 
                 text.set("fontSize", textFontSize);
 
              }
             if( $('#hbutton').attr('class')=== 'resize vertical icon' && $('.ui.button.format.active.apperance').attr('id') === 'textndImageToggle' ){
              //   alert("working");
-                text.set("top", img1.height * scaleFactor/2 - text.height/2);
+                text.set("top", img1.height * scaleFactor/4 - text.height/2); // changed 2 to 4 30th Jan  2016 Jason
                 text.set("opacity", 1);
                 text.set("left", img1.width * scaleFactor + 10);
                 text.set("fontSize", textFontSize);
@@ -401,14 +329,14 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
 //************************ Set image vertical *****************************
             else
             {
-                leftPos = canVasWidth / 2 - img1.width - 70 * scaleFactor ;
+                leftPos = canVasWidth / 2.5 - img1.width - 70 * scaleFactor ; // Changed 2 to 2.5 Jan 30th Jason
                 nextCard = (img1.width * scaleFactor) * thisCardNumber *
                     1.1;
                 topStart = nextCard;
             }
 
 
-            console.log(thisCardNumber);
+         //   console.log(thisCardNumber);
             var numberText = new fabric.Text(number, {
                // opacity: textVisible,
                 fill:'white',
