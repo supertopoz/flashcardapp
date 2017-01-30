@@ -23,7 +23,7 @@ var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_
 {url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "Dog"},
 {url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
 {url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
-{url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "WomanWomanWoman"},
+{url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Umbrella Catfish"},
 {url: "https://www.croatia-tourist-agency.com/images/upload/vechile/small_boat-rent-speedboat-punat-59.jpg", name: "Boat"},
 {url: "http://store.thecoop.com/coopstore/images/t_9010.jpg", name: "Chair"},
 {url: "http://restorationmasterfinder.com/restoration/wp-content/uploads/2013/04/fire-100x100.jpg", name: "Fire"},
@@ -194,7 +194,7 @@ function cardPositioner(theCards, format)
     }
 
 //**************** Text Wrapper ************************************************
-function wrapCanvasText(t, canvas, maxW, maxH) {
+/*function wrapCanvasText(t, canvas, maxW, maxH) {
     if (typeof maxH === "undefined") {
         maxH = 0;
     }
@@ -269,7 +269,7 @@ function wrapCanvasText(t, canvas, maxW, maxH) {
     formatted = formatted.substr(0, formatted.length - 1);
     return formatted;
 }
-
+*/
 //***************** Render each image on to the canvas with settings needed****
 
 function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
@@ -302,7 +302,7 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
 
         var flashCards = theCard;
         var imageUrl = images[flashCards].url;
-        var imageName = wrapCanvasText(images[flashCards].name, canvas, 48, 100);
+        var imageName = images[flashCards].name//wrapCanvasText(images[flashCards].name, canvas, 48, 100); // Changed 30th Jan Jason
         // Add Render the images.
         fabric.Image.fromURL(imageUrl, function(img)
         {
@@ -327,20 +327,62 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
             });
             //Where the text will appear on the screen
             //visible this
+            // Start Change 30th Jan Jason 
+            function fontSizer(textW, imgW, fontSz){
+                    console.log('imgW:', imgW)
+                    console.log('textW:', textW)
+                    var decrease = textW - imgW;
+                    var perDecrease = decrease/ textW *100;
+                    var fontOnePercent = fontSz/100;
+                    var fontDecrease = fontSz - (fontOnePercent *perDecrease)
+                    console.log("PerDec rease result:", perDecrease)
+                    return fontDecrease                 
+                }   
+                            
+                var imgW = img1.width * scaleFactor;
+                var textW = text.width;
+                var fontSz = text.get("fontSize");
+
+
+
             if (appearanceButtonState === 'textndImageToggle')
+
             {
+
+                if (textW > imgW){
+                    text.set("fontSize", fontSizer(textW, imgW, fontSz))
+                }
                 text.set("top", img1.height * scaleFactor + 2);
                 //Hidden this
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /
-                    2));
+                    2));             
             }
+            else if (appearanceButtonState === 'textToggle')
+
+            {
+                if (textW > imgW){
+                    text.set("fontSize", fontSizer(textW, imgW, fontSz))
+                }                               
+            }
+
+
+
+
+
             else
             {
+                if (textW > imgW){
+                    text.set("fontSize", fontSizer(textW, imgW, fontSz))
+                }
+
                 text.set("top", img1.height / 3 * scaleFactor + 2);
                 //Hidden this
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /
                     2));
+
+
             }
+            // End Change 30 th Jan Jason
             var rect = new fabric.Rect(
             {
                 opacity: 0,
