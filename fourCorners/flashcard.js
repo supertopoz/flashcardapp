@@ -18,11 +18,11 @@ $('.ui.sidebar').sidebar({
   .sidebar('attach events', '.sidebar.tiny.icon');
 
 // ***************************Seed data for development ****************************************
-var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_clown_avatar_picture_41741.png", name: "Homer"},
+var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_clown_avatar_picture_41741.png", name: "H"},
 {url: "http://sciencewiz.com/Portal_Images/DNA_Default.png", name: "DNA"},
 {url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
 {url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
-{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "PenPinepplePen"},
+{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "PenPinepplePenPenPen"},
 {url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
 {url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
 {url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Woman"},
@@ -160,81 +160,8 @@ $(".label").on('click', function()
 
 
 //**************** Text Wrapper ************************************************
-function wrapCanvasText(t, canvas, maxW, maxH) {
-    if (typeof maxH === "undefined") {
-        maxH = 0;
-    }
 
-    // var words = t.text.split(" ");
-    var words = t.split(" ");
-    var formatted = '';
-
-    // clear newlines
-    // var sansBreaks = t.text.replace(/(\r\n|\n|\r)/gm, "");  
-    var sansBreaks = t.replace(/(\r\n|\n|\r)/gm, "");
-    // calc line height
-    var lineHeight = new fabric.Text(sansBreaks, {
-        fontFamily: t.fontFamily,
-        fontSize: 20// t.fontSize
-    }).height;
-
-    // adjust for vertical offset
-    var maxHAdjusted = maxH > 0 ? maxH - lineHeight : 0;
-    var context = canvas.getContext("2d");
-
-
-    context.font = t.fontSize + "px " + t.fontFamily;
-    var currentLine = "";
-    var breakLineCount = 0;
-
-    for (var n = 0; n < words.length; n++) {
-
-        var isNewLine = currentLine == "";
-        var testOverlap = currentLine + ' ' + words[n];
-
-        // are we over width?
-        var w = context.measureText(testOverlap).width;
-
-        if (w < maxW) { // if not, keep adding words
-            currentLine += words[n] + ' ';
-            formatted += words[n] += ' ';
-        } else {
-
-            // if this hits, we got a word that need to be hypenated
-            if (isNewLine) {
-                var wordOverlap = "";
-
-                // test word length until its over maxW
-                for (var i = 0; i < words[n].length; ++i) {
-
-                    wordOverlap += words[n].charAt(i);
-                    var withHypeh = wordOverlap + "-";
-
-                    if (context.measureText(withHypeh).width >= maxW) {
-                        // add hyphen when splitting a word
-                        withHypeh = wordOverlap.substr(0, wordOverlap.length - 2) + "-";
-                        // update current word with remainder
-                        words[n] = words[n].substr(wordOverlap.length - 1, words[n].length);
-                        formatted += withHypeh; // add hypenated word
-                        break;
-                    }
-                }
-            }
-            n--; // restart cycle
-            formatted += '\n';
-            breakLineCount++;
-            currentLine = "";
-        }
-        if (maxHAdjusted > 0 && (breakLineCount * lineHeight) > maxHAdjusted) {
-            // add ... at the end indicating text was cutoff
-            formatted = formatted.substr(0, formatted.length - 3) + "...\n";
-            break;
-        }
-    }
-    // get rid of empy newline at the end
-    formatted = formatted.substr(0, formatted.length - 1);
-    return formatted;
-}
+// Removed 30/03/2017 - Jason
 
 
 
@@ -323,7 +250,7 @@ function addImg(){
 }
 
 
-
+////////////////////////////////////////////////Edit start 30/03/2017 Jason
 
 //***************** Render each image on to the canvas with settings needed****
 function renderImage(location, image, format)
@@ -360,14 +287,12 @@ function renderImage(location, image, format)
         var left = location.left;
         var top = location.top;
         var imageUrl = image.url;
-        var imageName =  wrapCanvasText(image.name, canvas, 48, 100);
+        var imageName =  image.name //12 //wrapCanvasText(image.name, canvas, 48, 100); Editied 15/03/2017 Jason
         // Add Text at the bottom of the images.
         fabric.Image.fromURL(imageUrl , function(img) {  
   
 
-         var scaleFactor=1.5;
-         var fontSize = scaleFactor * 30;
-         
+        
             
         var img1 = img.scale(scaleFactor).set({ 
         opacity:imageVisible,  
@@ -376,8 +301,11 @@ function renderImage(location, image, format)
         shadow: 'rgba(0,0,0,0.5) 2px 2px 2px',
         name:'1',
 
+
+
         });
-          
+        var scaleFactor=1.5;
+        var fontSize = 30;//12//scaleFactor * 10;     Editied 30/03/2017 Jason  
           
   			var text = new fabric.Text(imageName,
   			{
@@ -388,22 +316,31 @@ function renderImage(location, image, format)
             });
 			//Where the text will appear on the screen
             //visible this
-            if (appearanceButtonState === 'textndImageToggle')
-            {
+            if (appearanceButtonState === 'textndImageToggle' || appearanceButtonState === 'imageToggle') 
+            {               
+                if(text.width > img.width){
+                console.log("Text Width:",(img1.width/text.width) *10)
+                text.set("fontSize",(img1.width/text.width) *30);
+
+                }
+                
                 text.set("top", img1.height * scaleFactor + 2);
                 //Hidden this
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /
                     2));
+                
             }
             else
             {
+                text.set("fontSize", 30* scaleFactor);
                 text.set("top", img1.height / 3 * scaleFactor + 2);
                 //Hidden this
-                text.set("left", img1.width * scaleFactor / 2 - (text.width /
-                    2));
+                text.set("left", img1.width * scaleFactor / 2 - (text.width / 2));
+
+            
             }
           
-          
+////////////////////////////////////////////////Edit finish 30/03/2017 Jason          
           
            	var rect = new fabric.Rect(
            	{
@@ -450,7 +387,7 @@ window.fabric.util.addListener(canvas.upperCanvasEl, 'dblclick', function(event,
     if (getOpacityOfRect === 1)
     {
         getRectInGroup.set('opacity', 0);
-        getTextInGroup.set('opacity', 1);
+        getTextInGroup.set('opacity', 0); // Updated 15/03/2017 Fr
     }
     else
     {
