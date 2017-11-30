@@ -16,18 +16,30 @@ $('.ui.sidebar').sidebar({
   .sidebar('attach events', '.sidebar.tiny.icon');
 
 // ***************************Seed data for development ****************************************
-var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_clown_avatar_picture_41741.png", name: "Homer"},
-{url: "https://yt3.ggpht.com/-9yY6hEP8-KI/AAAAAAAAAAI/AAAAAAAAAAA/1OG4HqHDY6M/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "DNA"},
-{url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
-{url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
-{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "DogDogDoog"},
-{url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
-{url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
-{url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Woman with food"},
-{url: "https://www.croatia-tourist-agency.com/images/upload/vechile/small_boat-rent-speedboat-punat-59.jpg", name: "Boat"},
-{url: "http://store.thecoop.com/coopstore/images/t_9010.jpg", name: "Chair"},
-{url: "http://restorationmasterfinder.com/restoration/wp-content/uploads/2013/04/fire-100x100.jpg", name: "Fire"},
-{url: "https://yt3.ggpht.com/-Uqwr0hWfOic/AAAAAAAAAAI/AAAAAAAAAAA/Rip1vis4UrM/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "Cat"}];
+var images = [
+{url: "banana.png", name: "banana"},
+{url: "bike.png", name: "bike"},
+{url: "sand.png", name: "sand"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
+{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"}
+
+]
+//{url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
+//{url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
+//{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "DogDogDoog"},
+//{url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
+//{url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
+//{url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Woman with food"},
+//{url: "https://www.croatia-tourist-agency.com/images/upload/vechile/small_boat-rent-speedboat-punat-59.jpg", name: "Boat"},
+//{url: "http://store.thecoop.com/coopstore/images/t_9010.jpg", name: "Chair"},
+//{url: "http://restorationmasterfinder.com/restoration/wp-content/uploads/2013/04/fire-100x100.jpg", name: "Fire"},
+//{url: "https://yt3.ggpht.com/-Uqwr0hWfOic/AAAAAAAAAAI/AAAAAAAAAAA/Rip1vis4UrM/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "Cat"}];
 
 
 $('.ui.accordion').accordion({exclusive: false});
@@ -202,22 +214,22 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
         {
             if (totalFlashCards ===1)
             {
-                imageStartWidth = 350 * totalFlashCards * 1.1;
+                imageStartWidth = (350 * 3) * totalFlashCards * 1.1; // 300X300 update
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
             else if (totalFlashCards === 2)
             {
-                imageStartWidth = 200 * totalFlashCards * 1.1;
+                imageStartWidth = (200 * 3)* totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
             else if (totalFlashCards === 3)
             {
-                imageStartWidth = 150 * totalFlashCards * 1.1;
+                imageStartWidth = (150 * 3) * totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
             else if (totalFlashCards > 3)
             {
-                imageStartWidth = 100 * totalFlashCards * 1.1;
+                imageStartWidth = (100 * 3) * totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
 //If the hbutton is not clicked then this is the scale factor calculation
@@ -226,28 +238,28 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
         {
            if (totalFlashCards ===1)
             {
-                imageStartWidth = 400 * totalFlashCards * 1.1;
+                imageStartWidth = (400 * 3) * totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasHeight / imageStartWidth *2);
             }
             else if (totalFlashCards === 2)
             {
-                imageStartWidth = 300 * totalFlashCards * 1.1;
+                imageStartWidth = (300 * 3) * totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasHeight / imageStartWidth *2);
             }
             else if (totalFlashCards === 3)
             {
-                imageStartWidth = 200 * totalFlashCards * 1.1;
+                imageStartWidth = (200 * 3) * totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasHeight / imageStartWidth*2);
             } else{
-                 imageStartWidth = 200 * totalFlashCards * 1.1;
+                 imageStartWidth = (200 * 3) * totalFlashCards * 1.1;// 300X300 update
                 scaleFactor = (canVasHeight / imageStartWidth*2);
             }
         }
 // Add Render the images.
         fabric.Image.fromURL(imageUrl, function(img)
         {
-            var fontSize = scaleFactor * 20;
-            var textFontSize = scaleFactor * 60
+            var fontSize = scaleFactor * 20;// 300X300 update
+            var textFontSize = scaleFactor * 60; // 300X300 update
             var img1 = img.scale(scaleFactor).set(
             {
                 opacity: imageOpacity,
@@ -265,7 +277,7 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
                 ///
                 /// Change here 30th Jan 2017 Jason
                 ///
-                fontSize: scaleFactor * 12,
+                fontSize: scaleFactor * (12 * 3)// 300X300 update
                 ///
             });
             //Where the text will appear on the screen
@@ -281,13 +293,13 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
                 text.set("top", img1.height/2 * scaleFactor - text.height/2);
                 text.set("opacity", 1);
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /2));
-                text.set("fontSize", scaleFactor * 12); // Row added 30th Jan 2016
+                text.set("fontSize", scaleFactor * 12 * 3); // Row added 30th Jan 2016 //300X300 Update 30 th Nov 2017
 
 
              }
              if( $('#hbutton').attr('class')=== 'resize vertical icon' && $('.ui.button.format.active.apperance').attr('id') === 'textToggle' ){
              //   alert("working");
-                text.set("top", img1.height * scaleFactor/ 4  - text.height/2); // changed 2 to 4 30th Jan 2016 Jason
+                text.set("top", img1.height * (scaleFactor/ 4) * 1.8  - text.height/2); // changed 2 to 4 30th Jan 2016 Jason //300X300 Update 30 th Nov 2017
                 text.set("opacity", 1);
                 text.set("left", img1.width * scaleFactor / 2 - (text.width / 2)); 
                 text.set("fontSize", textFontSize);
@@ -371,7 +383,7 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
             circle.set("top", img1.height * scaleFactor / 2 - circle.height / 2);
          
             }else{
-            numberText.set("top",img1.height*scaleFactor*-0.32);
+            numberText.set("top",img1.height*scaleFactor*-0.11);//300X300 Update 30th Nov 2017 30 th Nov 2017
             numberText.set("left",img1.width * scaleFactor / 2 - numberText.width/2);
             circle.set("left", img1.width*scaleFactor/2-circle.width/2);
             circle.set("top", -40*scaleFactor);
