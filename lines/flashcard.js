@@ -17,18 +17,17 @@ $('.ui.sidebar').sidebar({
 
 // ***************************Seed data for development ****************************************
 var images = [
-{url: "banana.png", name: "banana"},
-{url: "bike.png", name: "bike"},
-{url: "sand.png", name: "sand"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"},
-{url: "http://www.novelties-direct.co.uk/images/P/Homer%20Simpson%20Cardboard%20Cutout2.jpg?size=100", name: "Homer"}
-
+{ url: "monkey.jpg", name: "monkey" },
+{ url: "parrot.jpg", name: "parrot" },
+{ url: "photo.jpg", name: "photo" },
+{ url: "sunny.jpg", name: "sunny" },
+{ url: "tiger.jpg", name: "tiger" },
+{ url: "windy.jpg", name: "windy" },
+{ url: "camel.jpg", name: "camel" },
+{ url: "cloudy.jpg", name: "cloudy" },
+{ url: "cold.jpg", name: "cold" },
+{ url: "goat.jpg", name: "goat" },
+{ url: "lion.jpg", name: "lion" }
 ]
 //{url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
 //{url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
