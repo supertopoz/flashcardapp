@@ -1,0 +1,118 @@
+* {box-sizing: border-box;}
+
+    .wrapper {
+        max-width: 1024px;
+        margin: 0 auto;
+        font: 1.2em Helvetica, arial, sans-serif;
+    }
+
+    .wrapper > * {
+        border: 1px solid grey;
+        background-color: white;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 2px 2px 2px 0px #aaa;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+.main-head {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+}
+
+.main-footer {
+  grid-area: footer;
+}
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "header"
+    "content"
+    "footer";
+}
+@media (min-width: 500px) {
+  .wrapper {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 
+      "header  header"
+      "content content"
+      "footer footer";
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 700px) {
+  .wrapper {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas: 
+      "header header  header"
+      "content content content"
+      "footer footer  footer"
+   }
+   nav ul {
+     flex-direction: column;
+   }
+}
+
+
+
+.games {
+  list-style: none;
+  margin: 10px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fill,minmax(200px, 2fr));
+}
+.card {
+    border-radius: 5px;
+    height: 100px;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-height: 10px;
+    margin-top: 10px !important;
+    box-shadow: 2px 2px 2px 0px #aaa;
+    cursor:pointer;
+    text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+#backs-to-the-board {
+  background-color:#ad1457;
+  color:white;
+}
+#freeboard {
+  background-color:#9c27b0;
+  color:white;
+}
+#disapearing-cards {
+  background-color:#512da8;
+  color:white;
+}
+#four-corners {
+  background-color:#303f9f;
+  color:white;
+}
+#machine-gun {
+  background-color:#1976d2;
+  color:white;
+}
+
+#lines {
+  background-color:#43a047;
+  color:white;
+}
+
