@@ -16,18 +16,19 @@ $('.ui.sidebar').sidebar({
   .sidebar('attach events', '.sidebar.tiny.icon');
 
 // ***************************Seed data for development ****************************************
-var images = [{url: "http://avatarbox.net/avatars/img30/the_simpsons_krusty_the_clown_avatar_picture_41741.png", name: "Homer"},
-{url: "https://yt3.ggpht.com/-9yY6hEP8-KI/AAAAAAAAAAI/AAAAAAAAAAA/1OG4HqHDY6M/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "DNA"},
-{url: "https://media.gq.com/photos/56ccac81154b2d0e6b1258bd/1:1/w_100,c_limit/sam-schube.jpg", name: "Man"},
-{url: "https://media.licdn.com/mpr/mpr/shrink_100_100/p/4/005/0b7/3af/16367cc.jpg", name: "Lion"},
-{url: "http://squawalpine.com/sites/default/files/styles/slideshow_thumb/public/multiple_medias/media_dog-sled.jpg", name: "Dog"},
-{url: "http://www.theverylittlewar.com/images/profil/sample.jpg", name: "Flower"},
-{url: "http://www.thanettoolsupplies.co.uk/shopimages/products/thumbnails/GED40Z-1-tn.jpg", name: "Spanner"},
-{url: "http://thumb7.shutterstock.com/thumb_small/654136/299439665/stock-photo-surprised-young-woman-excitement-299439665.jpg", name: "Umbrella Catfish"},
-{url: "https://www.croatia-tourist-agency.com/images/upload/vechile/small_boat-rent-speedboat-punat-59.jpg", name: "Boat"},
-{url: "http://store.thecoop.com/coopstore/images/t_9010.jpg", name: "Chair"},
-{url: "http://restorationmasterfinder.com/restoration/wp-content/uploads/2013/04/fire-100x100.jpg", name: "Fire"},
-{url: "https://yt3.ggpht.com/-Uqwr0hWfOic/AAAAAAAAAAI/AAAAAAAAAAA/Rip1vis4UrM/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "Cat"},{url: "https://yt3.ggpht.com/-Uqwr0hWfOic/AAAAAAAAAAI/AAAAAAAAAAA/Rip1vis4UrM/s100-c-k-no-rj-c0xffffff/photo.jpg", name: "Cat"}];
+var images = [
+    { url: "monkey.jpg", name: "monkey" },
+    { url: "parrot.jpg", name: "parrot" },
+    { url: "photo.jpg", name: "photo" },
+    { url: "sunny.jpg", name: "sunny" },
+    { url: "tiger.jpg", name: "tiger" },
+    { url: "windy.jpg", name: "windy" },
+    { url: "camel.jpg", name: "camel" },
+    { url: "cloudy.jpg", name: "cloudy" },
+    { url: "cold.jpg", name: "cold" },
+    { url: "goat.jpg", name: "goat" },
+    { url: "lion.jpg", name: "lion" }
+]
 
 
 $('.ui.accordion').accordion({exclusive: false});
@@ -316,7 +317,8 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor, format)
                 lockMovementX: true,
                 lockMovementY: true
             });
-
+            img1.height = 100; //300X300 Fix
+            img1.width = 100; //300X300 Fix
             var text = new fabric.Text(imageName,
             {
                 opacity: textVisible,
