@@ -213,22 +213,22 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
         {
             if (totalFlashCards ===1)
             {
-                imageStartWidth = (350 * 3) * totalFlashCards * 1.1; // 300X300 update
+                imageStartWidth = (350) * totalFlashCards * 1.1; 
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
             else if (totalFlashCards === 2)
             {
-                imageStartWidth = (200 * 3)* totalFlashCards * 1.1;// 300X300 update
+                imageStartWidth = (200)* totalFlashCards * 1.1;
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
             else if (totalFlashCards === 3)
             {
-                imageStartWidth = (150 * 3) * totalFlashCards * 1.1;// 300X300 update
+                imageStartWidth = (150) * totalFlashCards * 1.1;
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
             else if (totalFlashCards > 3)
             {
-                imageStartWidth = (100 * 3) * totalFlashCards * 1.1;// 300X300 update
+                imageStartWidth = (100) * totalFlashCards * 1.1;
                 scaleFactor = (canVasWidth / imageStartWidth);
             }
 //If the hbutton is not clicked then this is the scale factor calculation
@@ -237,20 +237,20 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
         {
            if (totalFlashCards ===1)
             {
-                imageStartWidth = (400 * 3) * totalFlashCards * 1.1;// 300X300 update
+                imageStartWidth = (400) * totalFlashCards * 1.1;
                 scaleFactor = (canVasHeight / imageStartWidth *2);
             }
             else if (totalFlashCards === 2)
             {
-                imageStartWidth = (300 * 3) * totalFlashCards * 1.1;// 300X300 update
+                imageStartWidth = (300) * totalFlashCards * 1.1;
                 scaleFactor = (canVasHeight / imageStartWidth *2);
             }
             else if (totalFlashCards === 3)
             {
-                imageStartWidth = (200 * 3) * totalFlashCards * 1.1;// 300X300 update
+                imageStartWidth = (200) * totalFlashCards * 1.1;
                 scaleFactor = (canVasHeight / imageStartWidth*2);
             } else{
-                 imageStartWidth = (200 * 3) * totalFlashCards * 1.1;// 300X300 update
+                 imageStartWidth = (200) * totalFlashCards * 1.1;
                 scaleFactor = (canVasHeight / imageStartWidth*2);
             }
         }
@@ -266,6 +266,8 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
                 strokeWidth: 1,
                 shadow: 'rgba(0,0,0,0.5) 2px 2px 2px',
             });
+            img1.height = 100;// 300X300 fix
+            img1.width = 100;// 300X300 fix
             var text = new fabric.Text(imageName,
             {
             //    width:43,
@@ -276,7 +278,7 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
                 ///
                 /// Change here 30th Jan 2017 Jason
                 ///
-                fontSize: scaleFactor * (12 * 3)// 300X300 update
+                fontSize: scaleFactor * 12
                 ///
             });
             //Where the text will appear on the screen
@@ -292,13 +294,13 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
                 text.set("top", img1.height/2 * scaleFactor - text.height/2);
                 text.set("opacity", 1);
                 text.set("left", img1.width * scaleFactor / 2 - (text.width /2));
-                text.set("fontSize", scaleFactor * 12 * 3); // Row added 30th Jan 2016 //300X300 Update 30 th Nov 2017
+                text.set("fontSize", scaleFactor * 12); // Row added 30th Jan 2016
 
 
              }
              if( $('#hbutton').attr('class')=== 'resize vertical icon' && $('.ui.button.format.active.apperance').attr('id') === 'textToggle' ){
              //   alert("working");
-                text.set("top", img1.height * (scaleFactor/ 4) * 1.8  - text.height/2); // changed 2 to 4 30th Jan 2016 Jason //300X300 Update 30 th Nov 2017
+                text.set("top", img1.height * (scaleFactor/ 4) - text.height/2); // changed 2 to 4 30th Jan 2016 Jason 
                 text.set("opacity", 1);
                 text.set("left", img1.width * scaleFactor / 2 - (text.width / 2)); 
                 text.set("fontSize", textFontSize);
@@ -382,7 +384,7 @@ function renderImage(theCard, totalFlashCards, thisCardNumber)
             circle.set("top", img1.height * scaleFactor / 2 - circle.height / 2);
          
             }else{
-            numberText.set("top",img1.height*scaleFactor*-0.11);//300X300 Update 30th Nov 2017 30 th Nov 2017
+            numberText.set("top",img1.height*scaleFactor*-0.32);
             numberText.set("left",img1.width * scaleFactor / 2 - numberText.width/2);
             circle.set("left", img1.width*scaleFactor/2-circle.width/2);
             circle.set("top", -40*scaleFactor);
