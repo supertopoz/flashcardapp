@@ -218,6 +218,8 @@ function renderImage(theCard, left, top, totalFlashCards, scaleFactor,thisCardNu
                 lockMovementX: true,
                 lockMovementY: true,
             });
+            img1.width = 100; //300X300 fix
+            img1.height = 100;//300X300 fix
             var cardNumberText = "" + thisCardNumber +""
             var text = new fabric.Text(cardNumberText, {
                 opacity: 1,
