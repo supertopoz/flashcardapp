@@ -10,7 +10,7 @@ To get your own version, fork or clone this repo
 
 ### Installing
 
-Once you have it on your local go to
+Once you have it on your local go to:
 
 ```
 index.html
